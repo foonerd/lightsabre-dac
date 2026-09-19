@@ -2,7 +2,7 @@
 
 **An audiophile Raspberry Pi HAT, given away complete.**
 
-Designed by [Dario “Darmur” Murgia](https://github.com/Darmur). Released to the public under [CC0 1.0](LICENSE).
+Designed by [Dario “Darmur” Murgia](https://github.com/Darmur). Released under [CC0 1.0](LICENSE).
 
 [![License: CC0-1.0](https://img.shields.io/badge/License-CC0_1.0-lightgrey.svg)](https://creativecommons.org/publicdomain/zero/1.0/)
 [![KiCad 9](https://img.shields.io/badge/KiCad-9.0-314cb0.svg)](https://www.kicad.org/)
@@ -13,23 +13,19 @@ Designed by [Dario “Darmur” Murgia](https://github.com/Darmur). Released to 
   <img src="LightSABRE_DAC.3D-render-03.png" alt="LightSABRE DAC, top view — Rev 1.0 by D. Murgia" width="820">
 </p>
 
-Most open DAC projects stop at a schematic sketch and a wish. Darmur shipped the other kind of gift: a finished, manufacturable, dual-edition board with Gerbers, pick-and-place, 3D, and two BOMs that already name LCSC, Mouser, and Digi-Key parts. The work is done. What remains is for someone to make it real, listen, and tell the rest of us what they heard.
-
-This repository is a community fork of [Darmur/lightsabre-dac](https://github.com/Darmur/lightsabre-dac). Nothing here claims his credit. The point of the fork is to keep that gift readable, findable, and easy to build.
+LightSABRE is a finished, manufacturable, dual-edition DAC for Raspberry Pi. The Gerbers, pick-and-place, 3D model, and two BOMs — already filled with LCSC, Mouser, and Digi-Key numbers — live in this repository. The work of designing it is done. What remains is to make a board, listen, and share what you heard.
 
 ---
 
 ## Why this board exists
 
-Dario Murgia is an Italian electronics engineer whose public work has always pointed in the same direction: audio hardware that people can actually hold. His GitHub is a trail of Raspberry Pi HATs, Class-D amplifiers, Bluetooth speakers, and a Class-A tube hybrid — boards released so others can learn from them, copy them, and improve them.
+Open audio hardware is only useful if someone can hold it. LightSABRE is a Raspberry Pi HAT built around a proper Sabre converter, with the analogue, the clocks, and the power that the datasheet assumes and most boards omit.
 
-LightSABRE is that instinct applied to a proper Sabre DAC.
+The name is not decoration. At the centre sits the ESS ES9018K2M, the 32-bit SABRE32 converter that made “Sabre sound” a living-room phrase: HyperStream architecture, on-chip ASRC, and a Time Domain Jitter Eliminator that forgives a Raspberry Pi’s imperfect I²S in a way cheap DAC HATs never do.
 
-The name is not decoration. At the centre sits the ESS ES9018K2M, the 32-bit SABRE32 converter that made “Sabre sound” a living-room phrase: HyperStream architecture, on-chip ASRC, and a Time Domain Jitter Eliminator that forgives a Raspberry Pi’s imperfect I²S in a way cheap DAC HATs never do. Around that chip Darmur built the analogue, the clocks, and the power that the datasheet assumes and most boards omit.
+The silk reads `D. Murgia  Rev1.0`. The licence is CC0.
 
-He then put his name on the silk — `D. Murgia  Rev1.0` — and waived the copyright.
-
-> Creative Commons CC0 is not a licence with strings. It is a dedication to the commons. You may manufacture LightSABRE, sell LightSABRE, modify LightSABRE, and say so. The only honest thing to keep is the attribution that the designer asked for with a silkscreen line.
+> Creative Commons CC0 is not a licence with strings. It is a dedication to the commons. You may manufacture LightSABRE, sell LightSABRE, modify LightSABRE, and say so. The only honest thing to keep is the name on the board.
 
 ---
 
@@ -61,7 +57,7 @@ A two-pin jumper (`J2` / `JP1`) ties the HAT 5 V rail to the Raspberry Pi. Fit i
 
 ## The engineering, in the order it matters
 
-Audiophile boards fail in the power supply more often than they fail in the DAC. LightSABRE is laid out as if Darmur knew that.
+Audiophile boards fail in the power supply more often than they fail in the DAC. LightSABRE is laid out around that fact.
 
 ### Isolated analogue rails
 
@@ -76,7 +72,7 @@ The ES9018K2M is not given a single 3.3 V and a hope.
 | DAC digital 3.3 V | LR6206B-U33 | Digital core and I/O |
 | DAC analogue 3.3 V | Texas Instruments **TPS7A20** (TPS7A2033) | Low-noise analogue / clock domain |
 
-That split — cheap regulator for digital, a Texas Instruments ultra-low-noise LDO for analogue — is the difference between a Sabre chip that can still measure like the datasheet and a Sabre chip that measures like a phone dongle.
+That split — a workhorse regulator for digital, a Texas Instruments ultra-low-noise LDO for analogue — is the difference between a Sabre chip that can still measure like the datasheet and a Sabre chip that measures like a phone dongle.
 
 ### The conversion, treated as analogue
 
@@ -110,7 +106,7 @@ One PCB. Two bills of materials. The difference is not a marketing sticker — i
 | **Clock character** | Correct frequency, serviceable jitter, easy to source | MEMS stability, vibration immunity, the part you specify when the rest of the board deserves it |
 | **Everything else** | Identical | Identical |
 
-The isolated DC/DC, the TPS7A20, the 0.1 % I/V resistors, the C0G filter caps, the Sabre chip, the jacks, and the HAT mechanics do not change. Darmur did not ship a “lite” board and a “real” board. He shipped one analogue design and two component grades, so a first build can be affordable and a second build can be uncompromising without a respin.
+The isolated DC/DC, the TPS7A20, the 0.1 % I/V resistors, the C0G filter caps, the Sabre chip, the jacks, and the HAT mechanics do not change. This is not a “lite” board and a “real” board. It is one analogue design and two component grades, so a first build can be affordable and a second build can be uncompromising without a respin.
 
 If you are assembling a single board and the Pro parts are in stock, fit the Pro parts. If you are assembling a small run and want every unit to exist, Standard is not a consolation prize.
 
@@ -165,7 +161,7 @@ Both 2-layer and 4-layer plots are in the tree. The design rules are 0.1524 mm (
 
 **Order the 4-layer board** unless a fab house forces the issue. Inner planes are how a Sabre HAT keeps digital return current out of the analogue. The 2-layer set exists so the project remains buildable when a four-layer panel is not.
 
-Suggested 4-layer reading of the job file Darmur exported:
+Suggested 4-layer reading of the exported job file:
 
 | Layer | Role |
 | --- | --- |
@@ -222,7 +218,7 @@ LightSABRE speaks the language every Pi DAC already speaks.
 - **I²C** at **0x48** (7-bit) for volume, filters, and mute
 - Overlay starting point on Raspberry Pi OS / Volumio / moOde / DietPi: a generic I²S DAC, then an ES9018K2M userspace or kernel client if you want hardware volume
 
-A community Volumio plugin for ES9018K2M boards lives at [foonerd/es9018k2m-plugin](https://github.com/foonerd/es9018k2m-plugin). Darmur’s own register work on later Sabre parts is the reason that ecosystem is as good as it is. Use what fits; publish what you change.
+Use what fits. Publish what you change.
 
 Suggested first listen, so reports can be compared:
 
@@ -235,22 +231,20 @@ Suggested first listen, so reports can be compared:
 
 ## The invitation
 
-Darmur did the expensive part: the thinking, the layout, the variants, the fab files, and the decision to give them away.
+The expensive part is already in the tree: the thinking, the layout, the variants, the fab files, and the decision to give them away.
 
 The interesting part left is not another respin. It is a board that exists, a listening chair, and a short write-up that the next builder can trust.
 
-Build a Standard. Build a Pro. Build one of each and swap only the op-amps in your notes. Photograph the underside. Post the first-power rail measurements. Say whether the isolated island was worth it on *your* Pi. Open an issue on this fork, or a pull request with a build log, or a thread wherever you already talk about DACs.
+Build a Standard. Build a Pro. Build one of each and swap only the op-amps in your notes. Photograph the underside. Post the first-power rail measurements. Say whether the isolated island was worth it on *your* Pi. Open an issue, or a pull request with a build log, or a thread wherever you already talk about DACs.
 
 If the board taught you something, write it down. That is how an open hardware gift stays alive after the ZIP files stop being news.
 
 ---
 
-## Designer
+## Author
 
 **Dario Murgia ([Darmur](https://github.com/Darmur))**  
-Italian electronics engineer. Author of LightSABRE and of a long run of open audio boards — [BassOwl-HAT](https://github.com/Darmur/bassowl-hat), [BassOwl-Lite](https://github.com/Darmur/bassowl-lite), [BassFly-uHAT](https://github.com/Darmur/bassfly-uhat), [BassCrab-uHAT](https://github.com/Darmur/basscrab-uhat), [tubeamp](https://github.com/Darmur/tubeamp). Schematic title block: *itz-embedded*, 2026-01-09, Rev 1.0.
-
-The silkscreen already says who made it. This README exists so a stranger landing on a fork still finds his name first.
+Italian electronics engineer. Other open audio boards: [BassOwl-HAT](https://github.com/Darmur/bassowl-hat), [BassOwl-Lite](https://github.com/Darmur/bassowl-lite), [BassFly-uHAT](https://github.com/Darmur/bassfly-uhat), [BassCrab-uHAT](https://github.com/Darmur/basscrab-uhat), [tubeamp](https://github.com/Darmur/tubeamp). Schematic title block: *itz-embedded*, 2026-01-09, Rev 1.0.
 
 ---
 
